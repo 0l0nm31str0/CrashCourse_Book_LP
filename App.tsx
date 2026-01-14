@@ -16,18 +16,12 @@ const App: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
-    // Check if user has already closed or submitted the popup
-    const hasSeen = localStorage.getItem('crashCoursePopupSeen');
-    if (!hasSeen) {
-      const timer = setTimeout(() => {
-        // Double check in case user manually opened and closed it within the 5 seconds
-        const hasSeenRecent = localStorage.getItem('crashCoursePopupSeen');
-        if (!hasSeenRecent) {
-          setIsPopupOpen(true);
-        }
-      }, 5000); // Show after 5 seconds
-      return () => clearTimeout(timer);
-    }
+    // Automatically show popup after 5 seconds every time the page loads
+    const timer = setTimeout(() => {
+      setIsPopupOpen(true);
+    }, 5000); 
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const handleOpenPopup = () => {
@@ -36,7 +30,6 @@ const App: React.FC = () => {
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
-    localStorage.setItem('crashCoursePopupSeen', 'true');
   };
 
   return (
