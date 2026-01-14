@@ -20,7 +20,11 @@ const App: React.FC = () => {
     const hasSeen = localStorage.getItem('crashCoursePopupSeen');
     if (!hasSeen) {
       const timer = setTimeout(() => {
-        setIsPopupOpen(true);
+        // Double check in case user manually opened and closed it within the 5 seconds
+        const hasSeenRecent = localStorage.getItem('crashCoursePopupSeen');
+        if (!hasSeenRecent) {
+          setIsPopupOpen(true);
+        }
       }, 5000); // Show after 5 seconds
       return () => clearTimeout(timer);
     }
@@ -37,7 +41,7 @@ const App: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen bg-white text-black selection:bg-[#FFD700] selection:text-black font-sans relative">
-      <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />
+      {isPopupOpen && <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />}
       <Hero onOpenPopup={handleOpenPopup} />
       <Trailer />
       <Problem />
