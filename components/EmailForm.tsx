@@ -44,12 +44,12 @@ const EmailForm: React.FC<EmailFormProps> = ({
           placeholder="Enter your email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={`w-full h-[54px] px-6 border outline-none transition-colors rounded-none ${inputBg} ${placeholderColor}`}
+          className={`w-full h-[50px] px-6 border outline-none transition-colors rounded-none ${inputBg} ${placeholderColor}`}
           required
         />
         <button 
           type="submit" 
-          className="h-[54px] px-8 bg-[#FFD700] text-black font-semibold uppercase tracking-wide hover:bg-[#E5C100] transition-colors whitespace-nowrap"
+          className="h-[50px] px-8 bg-[#FFD700] text-black font-semibold uppercase tracking-wide hover:bg-[#E5C100] transition-colors whitespace-nowrap"
         >
           {buttonLabel}
         </button>

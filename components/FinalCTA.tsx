@@ -1,7 +1,11 @@
 import React from 'react';
 import Button from './Button';
 
-const FinalCTA: React.FC = () => {
+interface FinalCTAProps {
+  onOpenPopup: () => void;
+}
+
+const FinalCTA: React.FC<FinalCTAProps> = ({ onOpenPopup }) => {
   const AMAZON_LINK = "https://www.amazon.com/exec/obidos/ASIN/1637632967?tag=simonsayscom";
 
   return (
@@ -18,8 +22,9 @@ const FinalCTA: React.FC = () => {
           But it might make it less alone.
         </p>
         
-        <div className="flex justify-center mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
            <Button href={AMAZON_LINK} target="_blank">Buy the book</Button>
+           <Button onClick={onOpenPopup} variant="secondary" className="!text-black !border-black hover:!bg-black hover:!text-white">Get first chapter for free</Button>
         </div>
         
         <div className="pt-2">

@@ -1,7 +1,11 @@
 import React from 'react';
 import Button from './Button';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onOpenPopup: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onOpenPopup }) => {
   const BOOK_COVER_URL = "https://cdn.prod.website-files.com/66014f7dafaf6a53523d0811/6603ea33eff828b190bced7c_CrashCourse_3D_REV%20Mar19-2024%201.png";
   const AMAZON_LINK = "https://www.amazon.com/exec/obidos/ASIN/1637632967?tag=simonsayscom";
 
@@ -29,16 +33,11 @@ const Hero: React.FC = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button href={AMAZON_LINK} target="_blank">
+              <Button href={AMAZON_LINK} target="_blank" variant="primary">
                 Buy on Amazon
               </Button>
-              <Button 
-                variant="secondary" 
-                href={AMAZON_LINK} 
-                target="_blank" 
-                className="!text-black !border-black hover:!bg-black hover:!text-white"
-              >
-                Listen on Audible
+              <Button onClick={onOpenPopup} variant="secondary" className="!text-black !border-black hover:!bg-black hover:!text-white">
+                Get First Chapter Free
               </Button>
             </div>
             

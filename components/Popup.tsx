@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
 
-const Popup: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface PopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Popup: React.FC<PopupProps> = ({ isOpen, onClose }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
-    // Check if user has already closed or submitted the popup
-    const hasSeen = localStorage.getItem('crashCoursePopupSeen');
-    if (!hasSeen) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 5000); // Show after 5 seconds
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  const handleClose = () => {
-    setIsOpen(false);
-    localStorage.setItem('crashCoursePopupSeen', 'true');
-  };
-
+  // Reset submission state when reopened? 
+  // Optional, but good UX if they want to enter another email or if they closed by accident.
+  // For now, we'll keep the submitted state if they already submitted, so they see the success message.
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
     // Simulate API call and close
     setTimeout(() => {
-        handleClose();
+        onClose();
     }, 2500);
   };
 
@@ -37,13 +29,13 @@ const Popup: React.FC = () => {
       {/* Overlay */}
       <div 
         className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm transition-opacity"
-        onClick={handleClose}
+        onClick={onClose}
       />
       
       {/* Modal Content */}
       <div className="relative bg-white w-full max-w-[500px] p-8 md:p-12 shadow-2xl transform transition-all animate-fade-in-up">
         <button 
-          onClick={handleClose}
+          onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors p-2"
           aria-label="Close popup"
         >

@@ -6,6 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
   target?: string;
   rel?: string;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   className = '',
   href,
+  onClick,
   ...props 
 }) => {
   const baseStyles = "h-[50px] px-6 text-[16px] font-semibold transition-colors duration-200 uppercase tracking-wide flex items-center justify-center border-none outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFD700] cursor-pointer no-underline";
@@ -28,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
 
   if (href) {
     return (
-      <a href={href} className={classes} target={props.target} rel={props.rel}>
+      <a href={href} className={classes} target={props.target} rel={props.rel} onClick={onClick}>
         {children}
       </a>
     );
@@ -37,6 +39,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button 
       className={classes}
+      onClick={onClick}
       {...props}
     >
       {children}

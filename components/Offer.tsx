@@ -13,12 +13,16 @@ const Offer: React.FC = () => {
           Get the Book
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[800px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[900px] mx-auto">
           {/* Left Column: Print Edition */}
-          <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow">
-             <h3 className="text-2xl font-bold mb-2">Print Edition</h3>
-             <p className="text-gray-600 mb-6">Paperback and Hardcover available.</p>
-             <div className="space-y-3 w-full">
+          <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow h-full">
+             <div className="mb-6 flex flex-col items-center">
+                 <h3 className="text-2xl font-bold mb-2">Print Edition</h3>
+                 <p className="text-gray-600 h-[24px]">Paperback and Hardcover available.</p>
+             </div>
+             
+             {/* Replaced mt-auto with mt-8 to align tops of action areas */}
+             <div className="space-y-3 w-full mt-8">
                <Button href={AMAZON_LINK} target="_blank" variant="black" fullWidth>Buy Hardcover</Button>
                <Button href={AMAZON_LINK} target="_blank" variant="secondary" className="!text-black !border-gray-300 hover:!border-black" fullWidth>Buy Paperback</Button>
              </div>
@@ -26,10 +30,15 @@ const Offer: React.FC = () => {
           </div>
 
           {/* Right Column: Free Chapter */}
-          <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow">
-             <h3 className="text-2xl font-bold mb-2">Free Chapter</h3>
-             <p className="text-gray-600 mb-6">Read the first chapter before you buy.</p>
-             <div className="w-full mt-auto mb-auto">
+          <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 flex flex-col items-center hover:shadow-lg transition-shadow h-full">
+             <div className="mb-6 flex flex-col items-center">
+                 <h3 className="text-2xl font-bold mb-2">Free Chapter</h3>
+                 <p className="text-gray-600 h-[24px]">Read the first chapter before you buy.</p>
+             </div>
+             
+             {/* Replaced mt-auto with mt-8 to align tops of action areas */}
+             <div className="w-full mt-8">
+               {/* Email form has h-50px for input and button, matching Button component height */}
                <EmailForm buttonLabel="Get Chapter 1" className="!max-w-none" />
              </div>
              <p className="text-xs text-gray-400 mt-4">Instant PDF download.</p>
